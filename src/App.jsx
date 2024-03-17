@@ -2,67 +2,44 @@ import { useRef, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import Form from "./components/Form";
+import { find } from "./utils/find";
 
 function App() {
-  const [count, setCount] = useState(0);
-  // const [diff, setDiff] = useState(0);
-  const [error, setError] = useState(null);
-  const [data, setData] = useState({
+  const [error, setError] = useState("");
+  const [completed, setCompleted] = useState(false);
+  const findFn = find;
+  const initial = {
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
-  });
-  // const datetime = new Date();
-  // const target = new Date("2024-03-30T19:48");
-  const ref = useRef();
-  const diff = useRef(0);
-  const find = () => {
-    const days = Math.floor(diff.current / (1000 * 60 * 60 * 24));
-    console.log({ days });
-    diff.current = Math.floor(diff.current % (1000 * 60 * 60 * 24));
-    const hours = Math.floor(diff.current / (1000 * 3600));
-    console.log({ hours });
-    diff.current = Math.floor(diff.current % (1000 * 3600));
-    const minutes = Math.floor(diff.current / (1000 * 60));
-    console.log({ minutes });
-    diff.current = Math.floor(diff.current % (1000 * 60));
-    const seconds = Math.floor(diff.current / 1000);
-    setData({ days, hours, minutes, seconds });
   };
-  const timer = () => {
-    if (diff.current < 0) {
-      setError("set date-time must not be previous date-time than current");
-    } else {
-      find();
-    }
-  };
-
-  console.log({ data });
+  const [data, setData] = useState(initial);
 
   return (
     <>
       <h1>Count Down Timer</h1>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          diff.current = new Date(ref.current.value) - new Date();
-          console.log({ diff: diff.current }, typeof diff.current);
-          // setDiff(new Date(ref.current.value) - new Date());
-          timer();
-          // console.log("ref:", ref.current.value);
-        }}
-      >
-        <input
-          type="datetime-local"
-          ref={ref}
-          required
-          onBlur={() => {
-            setError(null);
-          }}
-        />
-        <button type="submit">click</button>
-      </form>
+
+      <Form
+        findFn={findFn}
+        setError={setError}
+        setData={setData}
+        setCompleted={setCompleted}
+      />
+      {error === "" && !completed && (
+        <div>
+          <h1>Days:{data.days < 10 ? `0${data.days}` : data.days}</h1>
+          <h1>Hours:{data.hours < 10 ? `0${data.hours}` : data.hours}</h1>
+          <h1>
+            Minutes:{data.minutes < 10 ? `0${data.minutes}` : data.minutes}
+          </h1>
+          <h1>
+            Seconds:{data.seconds < 10 ? `0${data.seconds}` : data.seconds}
+          </h1>
+        </div>
+      )}
+      {completed && <p>Count Down is over What's your next adventures?</p>}
       {error && <p>{error}</p>}
     </>
   );
