@@ -4,6 +4,7 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import Form from "./components/Form";
 import { find } from "./utils/find";
+import Card from "./components/Card";
 
 function App() {
   const [error, setError] = useState("");
@@ -20,6 +21,10 @@ function App() {
   return (
     <>
       <h1>Count Down Timer</h1>
+      {Object.keys(data).forEach((i, index) => {
+        // console.log({ i, index });
+        return <Card key={index} title={i} value={data[i]} />;
+      })}
 
       <Form
         findFn={findFn}
@@ -29,14 +34,10 @@ function App() {
       />
       {error === "" && !completed && (
         <div>
-          <h1>Days:{data.days < 10 ? `0${data.days}` : data.days}</h1>
-          <h1>Hours:{data.hours < 10 ? `0${data.hours}` : data.hours}</h1>
-          <h1>
-            Minutes:{data.minutes < 10 ? `0${data.minutes}` : data.minutes}
-          </h1>
-          <h1>
-            Seconds:{data.seconds < 10 ? `0${data.seconds}` : data.seconds}
-          </h1>
+          {Object.keys(data).map((i, index) => {
+            // console.log({ title, value });
+            return <Card key={index} title={i} value={data[i]} />;
+          })}
         </div>
       )}
       {completed && <p>Count Down is over What's your next adventures?</p>}
