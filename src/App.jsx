@@ -19,8 +19,12 @@ function App() {
   const [data, setData] = useState(initial);
 
   return (
-    <>
-      <h1>Count Down Timer</h1>
+    <div className="main">
+      <center>
+        <h1 className="heading">
+          <span>Count Down</span> Timer
+        </h1>
+      </center>
       {Object.keys(data).forEach((i, index) => {
         // console.log({ i, index });
         return <Card key={index} title={i} value={data[i]} />;
@@ -33,16 +37,26 @@ function App() {
         setCompleted={setCompleted}
       />
       {error === "" && !completed && (
-        <div>
+        <div className="cardContainer">
           {Object.keys(data).map((i, index) => {
-            // console.log({ title, value });
             return <Card key={index} title={i} value={data[i]} />;
           })}
         </div>
       )}
-      {completed && <p>Count Down is over What's your next adventures?</p>}
-      {error && <p>{error}</p>}
-    </>
+      {completed && (
+        <center>
+          <h1 className="message">
+            Count Down is over What's your next adventures?
+          </h1>
+        </center>
+      )}
+      {error && (
+        <center>
+          {" "}
+          <h1 className="message">{error}</h1>
+        </center>
+      )}
+    </div>
   );
 }
 

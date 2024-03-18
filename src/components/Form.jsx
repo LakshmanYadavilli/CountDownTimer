@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import css from "./Form.module.css";
 
 const Form = ({ findFn, setError, setData, setCompleted }) => {
   const [id, setId] = useState(0);
@@ -28,6 +29,7 @@ const Form = ({ findFn, setError, setData, setCompleted }) => {
   };
   return (
     <form
+      className={css.formContainer}
       onSubmit={(e) => {
         e.preventDefault();
         setError("");
@@ -51,9 +53,11 @@ const Form = ({ findFn, setError, setData, setCompleted }) => {
           setError(null);
         }}
       />
-      <button type="submit" ref={btnEle}>
-        {isRunning ? "Clear" : "Start"}
-      </button>
+      <div>
+        <button type="submit" ref={btnEle}>
+          {isRunning ? "Clear" : "Start"}
+        </button>
+      </div>
     </form>
   );
 };

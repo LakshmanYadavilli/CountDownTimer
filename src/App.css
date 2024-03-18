@@ -1,0 +1,26 @@
+.cardContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main {
+  background-image: linear-gradient(to bottom right, red, blue);
+  height: 100vh;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+  position: relative;
+  padding: 10px;
+}
+.heading {
+  color: aquamarine;
+  font-weight: bolder;
+}
+.heading > span {
+  color: #ffffff;
+}
+.message {
+  font-weight: bolder;
+  margin-top: 30vh;
+}

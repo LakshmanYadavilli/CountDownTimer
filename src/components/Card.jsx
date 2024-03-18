@@ -5,7 +5,7 @@ const Card = ({ title, value }) => {
   return (
     <div className={css.card}>
       <h1>
-        {title}:{value < 10 ? `0${value}` : value}
+        {title.toUpperCase()}:{value < 10 ? `0${value}` : value}
       </h1>
     </div>
   );
