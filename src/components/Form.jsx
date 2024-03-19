@@ -45,14 +45,7 @@ const Form = ({ findFn, setError, setData, setCompleted }) => {
         }
       }}
     >
-      <input
-        type="datetime-local"
-        ref={dataTimeEle}
-        required
-        onBlur={() => {
-          setError(null);
-        }}
-      />
+      <input type="datetime-local" ref={dataTimeEle} required />
       <div>
         <button type="submit" ref={btnEle}>
           {isRunning ? "Clear" : "Start"}

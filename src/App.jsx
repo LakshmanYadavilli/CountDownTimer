@@ -25,10 +25,7 @@ function App() {
           <span>Count Down</span> Timer
         </h1>
       </center>
-      {Object.keys(data).forEach((i, index) => {
-        // console.log({ i, index });
-        return <Card key={index} title={i} value={data[i]} />;
-      })}
+   
 
       <Form
         findFn={findFn}

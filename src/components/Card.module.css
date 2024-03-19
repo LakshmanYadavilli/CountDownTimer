@@ -1,6 +1,4 @@
 .card {
-  width: 200px;
-  height: 200px;
   padding: 10px;
   background-color: antiquewhite;
   margin: 10px;
@@ -9,4 +7,20 @@
   align-items: center;
   box-shadow: 5px 10px;
   border-radius: 10px;
+}
+
+@media screen and (max-width: 300px) {
+  .card {
+    width: 60vw;
+    height: 60vw;
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 301px) and (max-width: 600px) {
+  .card {
+    width: 33vw;
+    height: 160px;
+    /* background-color: red; */
+    font-size: 12px;
+  }
 }
