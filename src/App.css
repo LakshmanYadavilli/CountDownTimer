@@ -7,6 +7,7 @@
   align-items: center; */
   position: relative;
   padding: 10px;
+  padding-top: 100px;
 }
 .cardContainer {
   display: flex;
